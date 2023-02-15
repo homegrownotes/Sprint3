@@ -118,6 +118,33 @@ function calculateTotal() {
 function generateCart() {
   // Using the "cartlist" array that contains all the items in the shopping cart,
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+  var cart = [];
+  for (let i = 0; i < cartList.length; i++) {
+    //Per cada element de cartList, hem de validar si existeix en el array cart:
+    let exist = false;
+    for (let j = 0; j < cart.length; j++) {
+      //Si ja existeix aquest producte al carretó…
+      if (cartList[i].id === cart[j].id) {
+        //haurem d'incrementar el camp quantity.
+        cart[j].quantity++;
+        //Se crea la propiedad "subtotal"
+        cart[j].subtotal = cartList[i].price * cart[j].quantity;
+        exist = true;
+      }
+    }
+    //En cas que no existeixi…
+    if (!exist) {
+      // l'afegim a l'array cart (compte, que no se t'oblidi agregar la propietat quantity amb valor 1 al producte abans de fer push).
+      cart.push({
+        name: cartList[i].name,
+        id: cartList[i].id,
+        price: cartList[i].price,
+        type: cartList[i].type,
+        quantity: 1,
+      });
+    }
+  }
+  console.log(cart);
 }
 
 // Exercise 5

@@ -18,29 +18,17 @@ function validate() {
   var errorPhone = document.getElementById("errorPhone");
 
   // Validate fields entered by the user: name, phone, password, and email
-  if (fName.value.length < 3 || !/^[a-zA-Z]+$/.test(fName.value)) {
+  if (fName.value == "" || fName.value.length < 3 || !/^[a-zA-Z]+$/.test(fName.value)) {
     error++;
-    errorName.textContent =
-      "This field is required and must have, at least, 3 characters";
-  } else   {
-    errorName.textContent = "";
-  }
+    }
 
-  if (fLastN.value.length < 3 || !/^[a-zA-Z]+$/.test(fLastN.value)) {
+  if (fLastN.value == "" || fLastN.value.length < 3 || !/^[a-zA-Z]+$/.test(fLastN.value)) {
     error++;
-    errorLastN.textContent =
-      "This field is required and must have, at least, 3 characters";
-  } else {
-    errorLastN.textContent = "";
-  }
+    }
 
   if (fEmail.value.length < 3 || !/\S+@\S+\.\S+/.test(fEmail.value)) {
     error++;
-    errorEmail.textContent =
-      "This field is required and must contain an '@' and have, at least, 3 characters";
-  } else {
-    errorEmail.textContent = "";
-  }
+    }
 
   if (
     fPassword.value.length < 3 ||
@@ -48,29 +36,18 @@ function validate() {
     !/[a-zA-Z]/.test(fPassword.value)
   ) {
     error++;
-    errorPassword.textContent = "Enter a correct password";
-  } else {
-    errorPassword.textContent = "";
   }
 
   if (fAddress.value.length < 3) {
     error++;
-    errorAddress.textContent =
-      "This field is required and must have, at least, 3 characters";
-  } else {
-    errorAddress.textContent = "";
-  }
+    }
 
   if (fPhone.value.length != 9 || !/^\d+$/.test(fPhone.value)) {
     error++;
-    errorPhone.textContent =
-      "Invalid phone number!! Must be 9 digits with no letters";
-  } else {
-    errorPhone.textContent = "";
-  }
+    }
 
   if (error > 0) {
-    alert("Error");
+    alert("please fill in the form correctly");
   } else {
     alert("OK");
   }

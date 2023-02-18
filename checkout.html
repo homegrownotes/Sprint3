@@ -123,7 +123,7 @@
       <form class="form needs-validation" novalidate>
         <div class="row bord p-5 shadow m-5">
           <div class="col-sm-6">
-            <div class="mt-3">
+            <div class="mt-3 position-relative">
               <label for="fName" class="form-label">First Name:</label>
               <input
                 id="fName" 
@@ -132,11 +132,11 @@
                 type="text"
                 placeholder="First Name"
               />
-              <div id="errorName" class="invalid-feedback">
+              <div id="errorName" class="invalid-tooltip">
                 This field is required and must have, at least, 3 characters
               </div>
             </div>
-            <div class="mt-3">
+            <div class="mt-3 position-relative">
               <label for="fEmail" class="form-label">Email:</label>
               <input
                 id="fEmail"
@@ -146,12 +146,12 @@
                 placeholder="Email"
                 minlength="3"
               />
-              <div id="errorEmail" class="invalid-feedback">
+              <div id="errorEmail" class="invalid-tooltip">
                 This field is required and must contain an '@' and have, at
                 least, 3 characters
               </div>
             </div>
-            <div class="mt-3">
+            <div class="mt-3 position-relative">
               <label for="fAddress" class="form-label">Address:</label>
               <input
                 id="fAddress"
@@ -161,13 +161,13 @@
                 placeholder="Address"
                 minlength="3"
               />
-              <div id="errorAddress" class="invalid-feedback">
+              <div id="errorAddress" class="invalid-tooltip">
                 This field is required and must have, at least, 3 characters
               </div>
             </div>
           </div>
-          <div class="col-sm-6">
-            <div class="mt-3">
+          <div class="col-sm-6 position-relative">
+            <div class="mt-3 position-relative">
               <label for="fLastN" class="form-label">Last Name:</label>
               <input
                 id="fLastN"
@@ -177,11 +177,11 @@
                 placeholder="Last Name"
                 minlength="3"
               />
-              <div id="errorLastN" class="invalid-feedback">
+              <div id="errorLastN" class="invalid-tooltip">
                 This field is required and must have, at least, 3 characters
               </div>
             </div>
-            <div class="mt-3">
+            <div class="mt-3 position-relative">
               <label for="fPassword" class="form-label">Password:</label>
               <input
                 id="fPassword"
@@ -193,11 +193,11 @@
                 maxlength="8"
                 placeholder="Password"
               />
-              <div id="errorPassword" class="invalid-feedback">
+              <div id="errorPassword" class="invalid-tooltip">
                 Enter a correct password
               </div>
             </div>
-            <div class="mt-3">
+            <div class="mt-3 position-relative">
               <label for="fPhone" class="form-label">Phone Number:</label>
               <input
                 id="fPhone"
@@ -206,7 +206,7 @@
                 type="number"
                 placeholder="Phone No."
               />
-              <div id="errorPhone" class="invalid-feedback">
+              <div id="errorPhone" class="invalid-tooltip">
                 Invalid phone number!! Must be 9 digits with no letters
               </div>
             </div>
@@ -275,6 +275,25 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script>// Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        'use strict'
+      
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+      
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+      
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()</script>
 
     <!-- Core theme JS-->
     <script src="js/shop.js"></script>

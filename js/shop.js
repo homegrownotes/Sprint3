@@ -196,8 +196,33 @@ function printCart(cart) {
 function addToCart(id) {
   // Refactor previous code in order to simplify it
   // 1. Loop for to the array products to get the item to add to cart
+    let productToAdd;
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].id === id) {
+        productToAdd = products[i];
+        break;
+      }
+    }
   // 2. Add found product to the cart array or update its quantity in case it has been added previously.
-}
+    let productAlreadyInCart = false;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === id) {
+        cart[i].quantity++;
+        productAlreadyInCart = true;
+        break;
+      }
+    }
+    if (!productAlreadyInCart) {
+      cart.push({
+        id: productToAdd.id,
+        name: productToAdd.name,
+        price: productToAdd.price,
+        type: productToAdd.type,
+        quantity: 1
+      });
+    }
+  }
+  
 
 // Exercise 8
 function removeFromCart(id) {

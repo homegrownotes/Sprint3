@@ -170,24 +170,33 @@ function applyPromotionsCart(cart) {
 function printCart(cart) {
   // Fill the shopping cart modal manipulating the shopping cart dom
   let totalCart=0;
+  let totalProduct = 0;
   let table=document.getElementById("cart_list");
   table.innerHTML="";
   for (let i = 0; i < cart.length; i++) {
     let totalProduct=cart[i].price * cart[i].quantity;
     totalCart += totalProduct;
-    document.getElementById("total_price").innerHTML=totalCart;
+    
+    let remove = document.createElement("span");
+    remove.innerText = "❌";
+    remove.addEventListener("click", removeFromCart);
+    remove.setAttribute("data-id", cart[i].id);
+
 
     let row=table.insertRow(0);
     let cell1=row.insertCell(0);
     let cell2=row.insertCell(1);
     let cell3=row.insertCell(2);
     let cell4=row.insertCell(3);
+    let cell5 = row.insertCell(4);
   
     cell1.innerHTML = cart[i].name;
     cell2.innerHTML = cart[i].price;
     cell3.innerHTML = cart[i].quantity;
     cell4.innerHTML = `$${totalProduct.toFixed(2)}`;
+    cell5.appendChild(remove);
   }
+  document.getElementById("total_price").innerHTML=totalCart;
 }
 
 // ** Nivell II **
@@ -225,10 +234,29 @@ function addToCart(id) {
   
 
 // Exercise 8
-function removeFromCart(id) {
+function removeFromCart(event) {
   // 1. Loop for to the array products to get the item to add to cart
-  // 2. Add found product to the cartList array
-}
+    // Obtener el id del producto que se va a eliminar
+    const productId = Number(event.target.getAttribute("data-id"));
+  
+    // Buscar el producto en el carrito por su id y disminuir su cantidad o eliminarlo
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === productId) {
+        if (cart[i].quantity > 1) {
+          // Si la cantidad es mayor que 1, disminuir la cantidad en 1
+          cart[i].quantity--;
+        } else {
+          // Si la cantidad es 1, eliminar el producto del carrito
+          cart.splice(i, 1);
+        }
+        break;
+      }
+    }
+    // Aplicar las promociones actualizadas al carrito
+    applyPromotionsCart(cart);
+    // Actualizar la visualización del carrito en la página
+    printCart(cart);
+  }
 
 function open_modal() {
   console.log("Open Modal");
